@@ -5,7 +5,7 @@
 package ca.sheridancollege.project;
 
 /**
- *
+ *  Test push 2023
  * @author ecemgulec
  */
 public class CardBJ extends Card {

@@ -18,6 +18,7 @@ public abstract class Game {
 
     private final String name;//the title of the game
     private ArrayList<Player> players;// the players of the game
+    private BlackjackDeck blackjackDeck;
 
     public Game(String name) {
         this.name = name;
@@ -54,5 +55,19 @@ public abstract class Game {
      * When the game is over, use this method to declare and display a winning player.
      */
     public abstract void declareWinner();
+
+    /**
+     * @return the blackjackDeck
+     */
+    public BlackjackDeck getBlackjackDeck() {
+        return blackjackDeck;
+    }
+
+    /**
+     * @param blackjackDeck the blackjackDeck to set
+     */
+    public void setBlackjackDeck(BlackjackDeck blackjackDeck) {
+        this.blackjackDeck = blackjackDeck;
+    }
 
 }//end class

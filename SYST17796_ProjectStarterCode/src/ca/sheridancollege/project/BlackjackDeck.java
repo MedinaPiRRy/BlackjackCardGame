@@ -10,6 +10,7 @@ import java.util.Collections;
 /**
  *
  * @author ecemgulec
+ * @author danielmedina 
  */
 public class BlackjackDeck extends GroupOfCards {
 

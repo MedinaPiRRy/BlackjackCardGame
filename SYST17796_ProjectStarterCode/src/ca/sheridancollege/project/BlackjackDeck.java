@@ -4,42 +4,31 @@
  */
 package ca.sheridancollege.project;
 
-import java.util.ArrayList;
-import java.util.Collections;
+
 
 /**
  *
  * @author ecemgulec
  * @author danielmedina 
  */
+import java.util.Collections;
+
 public class BlackjackDeck extends GroupOfCards {
-
-    private final int SIZE_OF_DECK = 52;
-    private ArrayList<Card> cards;
-
-    public BlackjackDeck(int size) {
-        super(size);
+    public BlackjackDeck() {
+        super();
         for (Suit suit : Suit.values()) {
-            cards = new ArrayList();
             for (Value value : Value.values()) {
-                CardBJ card = new CardBJ(suit, value);
-                cards.add(card);
+                this.addCard(new Card(suit, value));
             }
         }
+        shuffle();
     }
 
-    /**
-     * @return the deck
-     */
-    @Override
-    public ArrayList<Card> getCards() {
-        return cards;
+    public Card drawCard() {
+        return removeCard(0);
     }
 
-    @Override
     public void shuffle() {
-        Collections.shuffle(cards);
+        Collections.shuffle(this.getCards());
     }
-    
-
 }

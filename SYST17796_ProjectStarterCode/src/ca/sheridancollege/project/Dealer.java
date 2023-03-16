@@ -8,43 +8,21 @@ package ca.sheridancollege.project;
  *
  * @author ecemgulec
  */
-public class Dealer extends Player {
-private Hand hand;
-
-    public Dealer(){
+public class Dealer extends BlackjackPlayer {
+    public Dealer() {
         super("Dealer");
-    
-    }
-    @Override
-    public void play() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    /**
-     * @return the hand
-     */
-    public Hand getHand() {
-        return hand;
+    public void dealInitialCards(BlackjackPlayer player, BlackjackDeck deck) {
+        for (int i = 0; i < 2; i++) {
+            player.hit(deck);
+            this.hit(deck);
+        }
     }
 
-    /**
-     * @param hand the hand to set
-     */
-    public void setHand(Hand hand) {
-        this.hand = hand;
+    public void play(BlackjackDeck deck) {
+        while (getHandValue() < 17) {
+            hit(deck);
+        }
     }
-    
-      public void hit(boolean isHit) {
-
-    }
-
-    public void stand(boolean isStand) {
-
-    }
-
-    public boolean hasBlackjack() {
-        boolean blackjack = true;
-        return blackjack;
-    }
-    
 }

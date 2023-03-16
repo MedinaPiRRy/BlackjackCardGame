@@ -4,25 +4,14 @@
  */
 package ca.sheridancollege.project;
 
-import java.util.ArrayList;
-
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Scanner;
-
 /**
  *
  * @author ecemgulec
  */
-public class Main {
-
+public class Main extends BlackjackGame {
     public static void main(String[] args) {
-      
-       
-       
-     
- 
-
- 
+        BlackjackGame game = new BlackjackGame();
+        game.play();
     }
 }
+

@@ -11,14 +11,26 @@ package ca.sheridancollege.project;
  *
  * @author dancye
  */
-public abstract class Card {
-    
-     /**
-     * Students should implement this method for their specific children classes
-     *
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
-     */
-    @Override
-    public abstract String toString();
+public class Card {
+    private final Suit suit;
+    private final Value value;
 
+    public Card(Suit suit, Value value) {
+        this.suit = suit;
+        this.value = value;
+    }
+
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public Value getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return value + " of " + suit;
+    }
 }
+

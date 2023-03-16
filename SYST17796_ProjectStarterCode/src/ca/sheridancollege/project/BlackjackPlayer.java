@@ -9,14 +9,28 @@ package ca.sheridancollege.project;
  * @author ecemgulec
  */
 public class BlackjackPlayer extends Player {
-    
- public BlackjackPlayer(String name){
-     super(name);
- }
-
-    @Override
-    public void play() {
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public BlackjackPlayer(String name) {
+        super(name);
     }
-    
+
+    public void hit(BlackjackDeck deck) {
+        getHand().addCard(deck.drawCard());
+    }
+
+    public int getHandValue() {
+        int handValue = 0;
+        int aces = 0;
+        for (Card card : getHand().getCards()) {
+            handValue += card.getValue().getValue();
+            if (card.getValue() == Value.ACE) {
+                aces++;
+            }
+        }
+
+        while (handValue > 21 && aces > 0) {
+            handValue -= 10;
+            aces--;
+        }
+        return handValue;
+    }
 }

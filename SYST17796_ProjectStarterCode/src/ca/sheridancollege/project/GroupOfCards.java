@@ -5,8 +5,7 @@
  */
 package ca.sheridancollege.project;
 
-import java.util.ArrayList;
-import java.util.Collections;
+
 
 /**
  * A concrete class that represents any grouping of cards for a Game. HINT, you might want to subclass this more than
@@ -15,43 +14,34 @@ import java.util.Collections;
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  */
-public class GroupOfCards {
+import java.util.ArrayList;
+import java.util.List;
 
-    //The group of cards, stored in an ArrayList
-    private ArrayList<Card> cards;
-    private int size;//the size of the grouping
+public abstract class GroupOfCards {
+    private List<Card> cards;
 
-    public GroupOfCards(int size) {
-        this.size = size;
-        cards = new ArrayList(size);
+    public GroupOfCards() {
+        this.cards = new ArrayList<>();
     }
 
-    /**
-     * A method that will get the group of cards as an ArrayList
-     *
-     * @return the group of cards.
-     */
-    public ArrayList<Card> getCards() {
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
+    public Card removeCard(int index) {
+        if (index >= 0 && index < cards.size()) {
+            return cards.remove(index);
+        }
+        return null;
+    }
+
+    public List<Card> getCards() {
         return cards;
     }
 
-    public void shuffle() {
-        Collections.shuffle(getCards());
+    public int size() {
+        return cards.size();
     }
 
-    /**
-     * @return the size of the group of cards
-     */
-    public int getSize() {
-        return size;
-    }
-
-    /**
-     * @param size the max size for the group of cards
-     */
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    
-}//end class
+    public abstract void shuffle();
+}

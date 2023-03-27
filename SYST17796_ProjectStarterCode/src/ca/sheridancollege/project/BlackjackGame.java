@@ -33,14 +33,19 @@ public class BlackjackGame extends Game {
         boolean continuePlaying = true;
         Scanner scanner = new Scanner(System.in);
 
+        dl.dealInitialCards(player, deck);
+
+        System.out.println("\nYour hand: " + player.getHand().toString());
+
         while (continuePlaying) {
-            dl.dealInitialCards(player, deck);;
+            dl.dealInitialCards(player, deck);
 
             System.out.println("\nYour hand: " + player.getHand().toString());
 
             if (checkForBlackjack(player)) {
                 endRound("Player");
             } else {
+                dl.dealInitialCards(dealer, deck);
                 System.out.println("Dealer's up card: " + dealer.getHand().getCard(0));
 
                 boolean playerTurn = true;
@@ -63,6 +68,7 @@ public class BlackjackGame extends Game {
                   }
                 }
               }
+              scanner.close();
             }
           }
 

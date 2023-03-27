@@ -11,13 +11,10 @@ import java.util.Scanner;
 public class BlackjackGame extends Game {
 
     Dealer dl = new Dealer();
+    private boolean PlayerBusted = false;
     private BlackjackDeck deck;
     private BlackjackPlayer player;
     private Dealer dealer;
-
-    private boolean checkForBlackjack(BlackjackPlayer player) {
-        return player.getHandValue() == 21;
-    }
     
     public BlackjackGame() {
         deck = new BlackjackDeck();
@@ -34,21 +31,13 @@ public class BlackjackGame extends Game {
         Scanner scanner = new Scanner(System.in);
 
         dl.dealInitialCards(player, deck);
-
         System.out.println("\nYour hand: " + player.getHand().toString());
 
+        dl.dealInitialCards(dealer, deck);
+        System.out.println("Dealer's up card: " + dealer.getHand().getCard(0));
+
         while (continuePlaying) {
-            dl.dealInitialCards(player, deck);
-
-            System.out.println("\nYour hand: " + player.getHand().toString());
-
-            if (checkForBlackjack(player)) {
-                endRound("Player");
-            } else {
-                dl.dealInitialCards(dealer, deck);
-                System.out.println("Dealer's up card: " + dealer.getHand().getCard(0));
-
-                boolean playerTurn = true;
+            boolean playerTurn = true;
                 while (playerTurn) {
                     System.out.println("Do you want to hit or stand? (h/s)");
                     String choice = scanner.next().toLowerCase();
@@ -58,19 +47,43 @@ public class BlackjackGame extends Game {
                         System.out.println("\nYour hand: " + player.getHand().toString());
                         if (player.getHandValue() > 21) {
                             playerTurn = false;
+                            continuePlaying = false;
+                            PlayerBusted = true;
                             endRound("Player");
                         }
                     } else if ("s".equals(choice)) {
                         playerTurn = false;
+                        continuePlaying = false;
                     } else {
                         System.out.println("Invalid choice. Please try again.");
                     }
                   }
-                }
-              }
-              scanner.close();
-            }
-          }
+        }
+
+        if (PlayerBusted) {
+            System.out.println("\nSorry, you lost :( )");
+            System.out.println("Your final hand: " + player.getHand().toString());
+            System.out.println("Deck's value: " + player.getHandValue());
+            System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
+            System.out.println("Dealer's final value was: " + dealer.getHandValue());
+        } else if (player.getHandValue() > dealer.getHandValue()) {
+            System.out.println("\nCongratulations, You Won!! )");
+            System.out.println("Your final hand: " + player.getHand().toString());
+            System.out.println("Deck's value: " + player.getHandValue());
+            System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
+            System.out.println("Dealer's final value was: " + dealer.getHandValue());
+        } else {
+            System.out.println("\nSorry, you lost :( )");
+            System.out.println("Your final hand: " + player.getHand().toString());
+            System.out.println("Deck's value: " + player.getHandValue());
+            System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
+            System.out.println("Dealer's final value was: " + dealer.getHandValue());
+        }
+
+        end();
+        scanner.close();
+    }
+}
 
                
 

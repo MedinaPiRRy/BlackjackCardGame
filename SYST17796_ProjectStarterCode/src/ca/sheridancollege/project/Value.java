@@ -21,18 +21,22 @@ public enum Value {
     QUEEN("Queen", 10),
     KING("King", 10);
 
+    // valraibles for values
     private final String name;
     private final int value;
 
+    // creates value object to later be read with toString()
     Value(String name, int value) {
         this.name = name;
         this.value = value;
     }
 
+    // gets value of card
     public int getValue() {
         return value;
     }
 
+    // reads value
     @Override
     public String toString() {
         return name;

@@ -9,6 +9,8 @@ package ca.sheridancollege.project;
 import java.util.Collections;
 
 public class BlackjackDeck extends GroupOfCards {
+    
+    // to create blackjack's deck
     public BlackjackDeck() {
         super();
         for (Suit suit : Suit.values()) {
@@ -19,10 +21,12 @@ public class BlackjackDeck extends GroupOfCards {
         shuffle();
     }
 
+    // allows user to draw card from group of cards
     public Card drawCard() {
         return removeCard(0);
     }
 
+    // shuffles all cards
     public void shuffle() {
         Collections.shuffle(this.getCards());
     }

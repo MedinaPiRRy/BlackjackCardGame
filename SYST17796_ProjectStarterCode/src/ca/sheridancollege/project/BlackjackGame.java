@@ -28,23 +28,29 @@ public class BlackjackGame extends Game {
 
         start();
         boolean continuePlaying = true;
+        boolean playerTurn = true;
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("What's the player's name: ");
+        String pName = scanner.nextLine();
+        player.setName(pName);
+        System.out.println("Welcome " + pName);
+
         dl.dealInitialCards(player, deck);
-        System.out.println("\nYour hand: " + player.getHand().toString());
+        System.out.println("\n" + pName + "'s hand: " + player.getHand().toString());
 
         dl.dealInitialCards(dealer, deck);
         System.out.println("Dealer's up card: " + dealer.getHand().getCard(0));
 
         while (continuePlaying) {
-            boolean playerTurn = true;
+            playerTurn = true;
                 while (playerTurn) {
                     System.out.println("Do you want to hit or stand? (h/s)");
                     String choice = scanner.next().toLowerCase();
 
                     if ("h".equals(choice)) {
                         player.hit(deck);
-                        System.out.println("\nYour hand: " + player.getHand().toString());
+                        System.out.println("\n" + pName + "'s hand: " + player.getHand().toString());
                         if (player.getHandValue() > 21) {
                             playerTurn = false;
                             continuePlaying = false;
@@ -62,19 +68,19 @@ public class BlackjackGame extends Game {
 
         if (PlayerBusted) {
             System.out.println("\nSorry, you lost :( )");
-            System.out.println("Your final hand: " + player.getHand().toString());
+            System.out.println(pName + "'s final hand: " + player.getHand().toString());
             System.out.println("Deck's value: " + player.getHandValue());
             System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
             System.out.println("Dealer's final value was: " + dealer.getHandValue());
         } else if (player.getHandValue() > dealer.getHandValue()) {
             System.out.println("\nCongratulations, You Won!! )");
-            System.out.println("Your final hand: " + player.getHand().toString());
+            System.out.println(pName + "'s final hand: " + player.getHand().toString());
             System.out.println("Deck's value: " + player.getHandValue());
             System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
             System.out.println("Dealer's final value was: " + dealer.getHandValue());
         } else {
             System.out.println("\nSorry, you lost :( )");
-            System.out.println("Your final hand: " + player.getHand().toString());
+            System.out.println(pName + "'s final hand: " + player.getHand().toString());
             System.out.println("Deck's value: " + player.getHandValue());
             System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
             System.out.println("Dealer's final value was: " + dealer.getHandValue());

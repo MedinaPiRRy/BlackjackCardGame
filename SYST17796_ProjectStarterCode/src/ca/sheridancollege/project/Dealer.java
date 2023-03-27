@@ -17,10 +17,4 @@ public class Dealer extends BlackjackPlayer {
             this.hit(deck);
         }
     }
-
-    public void play(BlackjackDeck deck) {
-        while (getHandValue() < 17) {
-            hit(deck);
-        }
-    }
 }

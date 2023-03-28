@@ -23,17 +23,27 @@ public class BlackjackPlayer extends Player {
         int handValue = 0;
         int aces = 0;
         for (Card card : getHand().getCards()) {
-            handValue += card.getValue().getValue();
-            if (card.getValue() == Value.ACE) {
+            if (card.getValue() != Value.ACE) {
+                handValue += card.getValue().getValue();
+            } else if (card.getValue() == Value.ACE) {
                 aces++;
+                System.out.println(aces);
             }
         }
-
-        /* this while loop makes sure that
-        the user is using the aces in the most favorable way for the player */
-        while (handValue > 21 && aces > 0) {
-            handValue -= 10;
-            aces--;
+         /*
+         * this if-statement makes sure that
+         * the user is using the aces in the most favorable way for the player
+         */
+        int tempHandValue = 0;
+        if (aces >= 2) {
+            handValue += aces;
+        } else if (aces == 1) {
+            tempHandValue = handValue + 11;
+            if (tempHandValue < 21) {
+                handValue += 11;
+            } else {
+                handValue += 1;
+            }
         }
         return handValue;
     }

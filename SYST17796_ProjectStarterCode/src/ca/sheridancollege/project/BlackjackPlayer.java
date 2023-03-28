@@ -27,7 +27,6 @@ public class BlackjackPlayer extends Player {
                 handValue += card.getValue().getValue();
             } else if (card.getValue() == Value.ACE) {
                 aces++;
-                System.out.println(aces);
             }
         }
          /*

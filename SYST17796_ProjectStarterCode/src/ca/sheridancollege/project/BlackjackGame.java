@@ -24,6 +24,9 @@ public class BlackjackGame extends Game {
         dealer = new Dealer();
     }
 
+    Betting money = new Betting(200);
+    public double bet;
+
     @Override
     public void play() {
         System.out.println("Welcome to Blackjack!");
@@ -39,6 +42,7 @@ public class BlackjackGame extends Game {
         String pName = scanner.nextLine();
         player.setName(pName);
         System.out.println("Welcome " + pName);
+        System.out.println("Your total amount of money is: " + money.getMoney());
 
         // dealer initializes both the user's and its own hand
         dl.dealInitialCards(player, deck);
@@ -46,6 +50,12 @@ public class BlackjackGame extends Game {
 
         dl.dealInitialCards(dealer, deck);
         System.out.println("Dealer's up card: " + dealer.getHand().getCard(0));
+
+        System.out.println("How much would you like to bet? ");
+        bet = scanner.nextDouble();
+        money.addBet(bet);
+        System.out.println("Your bet was: " + money.getBet());
+        System.out.println("Total amount of money: " + money.getMoney());
 
         // loop to continue playing
         while (continuePlaying) {
@@ -60,6 +70,11 @@ public class BlackjackGame extends Game {
                     if ("h".equals(choice)) {
                         player.hit(deck);
                         System.out.println("\n" + pName + "'s hand: " + player.getHand().toString());
+                        System.out.println("How much would you like to bet? ");
+                        bet = scanner.nextDouble();
+                        money.addBet(bet);
+                        System.out.println("Your bet was: " + money.getBet());
+                        System.out.println("Total amount of money: " + money.getMoney());
 
                         /* if player's hand value is over 21, player looses the game automatically
                         this is because dealer can't never go over 21 with only two cards */
@@ -76,7 +91,7 @@ public class BlackjackGame extends Game {
                             System.out.println("Invalid choice. Please try again.");
                         }
                   }
-        }
+            }
 
         // if player lost statement
         if (PlayerBusted) {
@@ -85,6 +100,7 @@ public class BlackjackGame extends Game {
             System.out.println("Deck's value: " + player.getHandValue());
             System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
             System.out.println("Dealer's final value was: " + dealer.getHandValue());
+            System.out.println("Total amount of money: " + money.getMoney());
         } 
             // if player is closer to 21
             else if (player.getHandValue() > dealer.getHandValue()) {
@@ -93,6 +109,8 @@ public class BlackjackGame extends Game {
                 System.out.println("Deck's value: " + player.getHandValue());
                 System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
                 System.out.println("Dealer's final value was: " + dealer.getHandValue());
+                money.setMoney(money.getMoney() + (money.getBet()*2));
+                System.out.println("Total amount of money: " + money.getMoney());
             } 
             // if player's hand and dealer's hand have same value
             else if (player.getHandValue() == dealer.getHandValue()) {
@@ -101,6 +119,8 @@ public class BlackjackGame extends Game {
                 System.out.println("Deck's value: " + player.getHandValue());
                 System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
                 System.out.println("Dealer's final value was: " + dealer.getHandValue());
+                money.setMoney(money.getMoney() + (money.getBet()/2));
+                System.out.println("Total amount of money: " + money.getMoney());
             }
         
             // else user lost
@@ -110,6 +130,7 @@ public class BlackjackGame extends Game {
                 System.out.println("Deck's value: " + player.getHandValue());
                 System.out.println("Dealer's final hand was: " + dealer.getHand().toString());
                 System.out.println("Dealer's final value was: " + dealer.getHandValue());
+                System.out.println("Total amount of money: " + money.getMoney());
             }
 
         // ends game

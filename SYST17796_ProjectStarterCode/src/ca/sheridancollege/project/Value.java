@@ -1,25 +1,45 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
+
 package ca.sheridancollege.project;
 
 /**
  *
  * @author ecemgulec
+ * @author MedinaPiRRy
  */
 public enum Value {
-    ACE,
-    TWO,
-    THREE,
-    FOUR,
-    FIVE,
-    SIX,
-    SEVEN,
-    EIGHT,
-    NINE,
-    TEN,
-    JACK,
-    QUEEN,
-    KING
+    ACE("Ace", 1),
+    TWO("Two", 2),
+    THREE("Three", 3),
+    FOUR("Four", 4),
+    FIVE("Five", 5),
+    SIX("Six", 6),
+    SEVEN("Seven", 7),
+    EIGHT("Eight", 8),
+    NINE("Nine", 9),
+    TEN("Ten", 10),
+    JACK("Jack", 10),
+    QUEEN("Queen", 10),
+    KING("King", 10);
+
+    // valraibles for values
+    private final String name;
+    private final int value;
+
+    // creates value object to later be read with toString()
+    Value(String name, int value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    // gets value of card
+    public int getValue() {
+        return value;
+    }
+
+    // reads value
+    @Override
+    public String toString() {
+        return name;
+    }
 }
+

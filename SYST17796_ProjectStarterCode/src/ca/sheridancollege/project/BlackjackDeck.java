@@ -1,44 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ca.sheridancollege.project;
 
-import java.util.ArrayList;
+/**
+ * 
+ * @author ecemgulec
+ * @author MedinaPiRRy 
+ */
 import java.util.Collections;
 
-/**
- *
- * @author ecemgulec
- */
 public class BlackjackDeck extends GroupOfCards {
-
-    private final int SIZE_OF_DECK = 52;
-    private ArrayList<Card> cards;
-
-    public BlackjackDeck(int size) {
-        super(size);
+    
+    // to create blackjack's deck
+    public BlackjackDeck() {
+        super();
         for (Suit suit : Suit.values()) {
-            cards = new ArrayList();
             for (Value value : Value.values()) {
-                CardBJ card = new CardBJ(suit, value);
-                cards.add(card);
+                this.addCard(new Card(suit, value));
             }
         }
+        shuffle();
     }
 
-    /**
-     * @return the deck
-     */
-    @Override
-    public ArrayList<Card> getCards() {
-        return cards;
+    // allows user to draw card from group of cards
+    public Card drawCard() {
+        return removeCard(0);
     }
 
-    @Override
+    // shuffles all cards
     public void shuffle() {
-        Collections.shuffle(cards);
+        Collections.shuffle(this.getCards());
     }
-    
-
 }

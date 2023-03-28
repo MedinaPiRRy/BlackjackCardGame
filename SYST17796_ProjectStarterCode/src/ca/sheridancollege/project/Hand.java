@@ -1,88 +1,56 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ca.sheridancollege.project;
 
-import java.util.ArrayList;
+package ca.sheridancollege.project;
 
 /**
  *
  * @author ecemgulec
+ * @author MedinaPiRRy
  */
-public class Hand extends GroupOfCards {
-    private ArrayList<Card> cards;
-    private int size;
-    private Card firstCard;
-    private Card secondCard;
-    private int handValue;
-    
-   public Hand(int size, ArrayList<Card> cards){
-       super(size);
-       this.cards=cards;
-   }
+import java.util.ArrayList;
+import java.util.List;
 
-    /**
-     * @return the cards
-     */
-    public ArrayList<Card> getCards() {
+public class Hand {
+
+    // creates list of cards
+    private List<Card> cards;
+
+    // creates hand object with cards list
+    public Hand() {
+        cards = new ArrayList<>();
+    }
+
+    // lets user add card from cards list
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
+    // lets user remove card from cards list
+    public Card removeCard(int index) {
+        if (index >= 0 && index < cards.size()) {
+            return cards.remove(index);
+        }
+        return null;
+    }
+
+    // getters for cards and list of cards
+    public Card getCard(int index) {
+        if (index >= 0 && index < cards.size()) {
+            return cards.get(index);
+        }
+        return null;
+    }
+
+    public List<Card> getCards() {
         return cards;
     }
 
-    /**
-     * @param cards the cards to set
-     */
-    public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
+    // lets user read cards
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Card card : cards) {
+            sb.append(card.toString()).append(", ");
+        }
+        return sb.toString().substring(0, sb.length() - 2);
     }
-
-    /**
-     * @return the size
-     */
-    public int getSize() {
-        return size;
-    }
-
-    /**
-     * @param size the size to set
-     */
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    /**
-     * @return the firstCard
-     */
-    public Card getFirstCard() {
-        return firstCard;
-    }
-
-    /**
-     * @param firstCard the firstCard to set
-     */
-    public void setFirstCard(Card firstCard) {
-        this.firstCard = firstCard;
-    }
-
-    /**
-     * @return the secondCard
-     */
-    public Card getSecondCard() {
-        return secondCard;
-    }
-
-    /**
-     * @param secondCard the secondCard to set
-     */
-    public void setSecondCard(Card secondCard) {
-        this.secondCard = secondCard;
-    }
-
-    /**
-     * @return the handValue
-     */
-    public int getHandValue() {
-        return handValue;
-    }
-   
 }

@@ -1,22 +1,57 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ca.sheridancollege.project;
+
+import java.util.List;
 
 /**
  *
  * @author ecemgulec
+ * @author MedinaPiRRy
  */
 public class BlackjackPlayer extends Player {
-    
- public BlackjackPlayer(String name){
-     super(name);
- }
 
-    @Override
-    public void play() {
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // creates blackjack player
+    public BlackjackPlayer(String name) {
+        super(name);
     }
-    
+
+    // lets player get a card
+    public void hit(BlackjackDeck deck) {
+        getHand().addCard(deck.drawCard());
+    }
+
+    // calculates the value from the hand
+    public int getHandValue() {
+        int handValue = 0;
+        int aces = 0;
+        for (Card card : getHand().getCards()) {
+            if (card.getValue() != Value.ACE) {
+                handValue += card.getValue().getValue();
+            } else if (card.getValue() == Value.ACE) {
+                aces++;
+                System.out.println(aces);
+            }
+        }
+        int tempHandValue = 0;
+        if (aces >= 2) {
+            handValue += aces;
+        } else if (aces == 1) {
+            tempHandValue = handValue + 11;
+            if (tempHandValue < 21) {
+                handValue += 11;
+            } else {
+                handValue += 1;
+            }
+        }
+
+        /*
+         * this while loop makes sure that
+         * the user is using the aces in the most favorable way for the player
+         */
+        // while (handValue > 21 && aces > 0) {
+        // handValue -= 10;
+        // aces--;
+        // }
+        return handValue;
+    }
 }

@@ -38,7 +38,7 @@ public class BlackjackPlayer extends Player {
             handValue += aces;
         } else if (aces == 1) {
             tempHandValue = handValue + 11;
-            if (tempHandValue < 21) {
+            if (tempHandValue <= 21) {
                 handValue += 11;
             } else {
                 handValue += 1;

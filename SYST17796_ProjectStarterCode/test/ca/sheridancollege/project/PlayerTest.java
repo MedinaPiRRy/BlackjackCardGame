@@ -10,6 +10,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import ca.sheridancollege.project.BlackjackPlayer;
+import ca.sheridancollege.project.Player;
+
 import static org.junit.Assert.*;
 
 /**

@@ -11,6 +11,13 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import ca.sheridancollege.project.BlackjackDeck;
+import ca.sheridancollege.project.BlackjackPlayer;
+import ca.sheridancollege.project.Card;
+import ca.sheridancollege.project.Dealer;
+import ca.sheridancollege.project.Hand;
+
 import static org.junit.Assert.*;
 
 /**

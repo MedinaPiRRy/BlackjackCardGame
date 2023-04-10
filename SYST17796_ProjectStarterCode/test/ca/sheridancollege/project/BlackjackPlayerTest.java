@@ -11,6 +11,14 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import ca.sheridancollege.project.BlackjackDeck;
+import ca.sheridancollege.project.BlackjackPlayer;
+import ca.sheridancollege.project.Card;
+import ca.sheridancollege.project.Hand;
+import ca.sheridancollege.project.Suit;
+import ca.sheridancollege.project.Value;
+
 import static org.junit.Assert.*;
 
 /**
@@ -50,8 +58,7 @@ public class BlackjackPlayerTest {
         
         //Player hand
         Hand playerHand = instance.getHand();
-        List<Card> expectedCards = new ArrayList();
-        
+        List<Card> expectedCards = new ArrayList<Card>();        
         //Player should have a card after choose hit option.
         int expectedNumOfCard = 1;
         instance.hit(deck);
